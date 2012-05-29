@@ -4,11 +4,3 @@ var editor = CodeMirror(document.body, {
   lineNumbers: true
 });
 
-chrome.devtools.panels.setOpenResourceHandler(function(resource, line) {
-  console.log('resource', resource, line);
-  resource.getContent(function(content, encoding) {
-    console.log('encoding', encoding);
-    editor.setValue(content);
-  });
-});
-
