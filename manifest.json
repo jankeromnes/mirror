@@ -4,7 +4,7 @@
   "version": "0.1",
   "icons": {
     "16": "img/mirror16.png",
-    "32": "img/mirror16.png",
+    "32": "img/mirror32.png",
     "48": "img/mirror48.png",
     "128": "img/mirror128.png"
   },
