@@ -3,7 +3,7 @@ chrome.devtools.inspectedWindow.onResourceContentCommitted.addListener(function(
 });
 
 chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', function(panel) {
-  console.log(JSON.stringify(panel));
+  console.log('panel',JSON.stringify(panel),panel);
 
   var res = null,
       editor = null,
@@ -38,6 +38,8 @@ chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', fu
       console.log('encoding', encoding);
       load(content, line);
     });
+
+    panel.show();
   });
 
   panel.onShown.addListener(function(window) {
@@ -52,7 +54,22 @@ chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', fu
     }
   });
 
-  var buttonsave = panel.createStatusBarButton('img/mirror16.png', 'Save', false);
-  buttonsave.onClicked.addListener(save);
+  panel.onSearch.addListener(function(action, query) {
+    console.log('search',action,query);
+    if (editor) {
+      var cursor = editor.getSearchCursor(query, null, true);
+      cursor.findNext();
+    }
+  });
+
+  //var buttonsave = panel.createStatusBarButton('img/mirror16.png', 'Save', false);
+  //buttonsave.onClicked.addListener(save);
+
+  var buttonres = panel.createStatusBarButton('img/mirror16.png', 'Resources', false);
+  buttonres.onClicked.addListener(function() {
+    chrome.devtools.inspectedWindow.getResources(function(res){
+      console.log(res);
+    });
+  });
 });
 
