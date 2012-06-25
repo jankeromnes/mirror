@@ -35,6 +35,28 @@ chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', fu
     }
   }
 
+  // set and unset breakpoints with the extension API
+  function setBreakpoint(line) {
+    console.log('TODO add breakpoint at line',line);
+  }
+  function unsetBreakpoint(line) {
+    console.log('TODO remove breakpoint at line',line);
+  }
+
+  // listen to breakpoint events from the extension API
+  /*
+  chrome.devtools.onSetBreakpoint(line) {
+    if (editor) editor.setBreakpoint(line);
+  }
+
+  chrome.devtools.onUnsetBreakpoint(line) {
+    if (editor) editor.unsetBreakpoint(line);
+  }
+
+  */
+
+
+
   // use CodeMirror panel to open resources
   chrome.devtools.panels.setOpenResourceHandler(function(resource, line) {
     console.log('open resource', resource, resource.url, resource.type, line);
@@ -53,6 +75,8 @@ chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', fu
     if (!editor) {
       console.log('setting editor', window.editor);
       editor = window.editor;
+      editor.onSetBreakpoint = setBreakpoint;
+      editor.onUnsetBreakpoint = unsetBreakpoint;
     }
     if (buffer) {
       console.log('loading buffer');
