@@ -70,15 +70,15 @@ chrome.devtools.panels.create('CodeMirror', 'img/mirror32.png', 'index.html', fu
     }
   });
 
-  //var buttonsave = panel.createStatusBarButton('img/mirror16.png', 'Save', false);
-  //buttonsave.onClicked.addListener(save);
+  var buttonsave = panel.createStatusBarButton('img/mirror32.png', 'Save', false);
+  buttonsave.onClicked.addListener(save);
 
   // test inspectedWindow.getResources
-  var buttonres = panel.createStatusBarButton('img/mirror16.png', 'Resources', false);
+  /*var buttonres = panel.createStatusBarButton('img/mirror16.png', 'Resources', false);
   buttonres.onClicked.addListener(function() {
     chrome.devtools.inspectedWindow.getResources(function(res){
       console.log(res);
     });
-  });
+  });*/
 });
 
