@@ -12,3 +12,6 @@ html, body {
   height: auto;
   width: 100%;
 }
+.CodeMirror-gutter-text {
+  cursor: default;
+}
